@@ -21,14 +21,23 @@ export default function Header() {
         <div>
           <ul className="flex space-x-10">
             <li
-              className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent
-              ${pathMatchRoute("/offers") && "text-black border-b-red-500"}`}
+              className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent${
+                pathMatchRoute("/offers") && "text-black border-b-red-500"
+              }`}
             >
               <NavLink to="/offers">Offers</NavLink>
             </li>
             <li
-              className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent
-              ${pathMatchRoute("/sign-in") && "text-black border-b-red-500"}`}
+              className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent${
+                pathMatchRoute("/sign-up") && "text-black border-b-red-500"
+              }`}
+            >
+              <NavLink to="/sign-up">Sign Up</NavLink>
+            </li>
+            <li
+              className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent${
+                pathMatchRoute("/sign-in") && "text-black border-b-red-500"
+              }`}
             >
               <NavLink to="/sign-in">Sign In</NavLink>
             </li>
