@@ -1,17 +1,31 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { Link, useNavigate } from "react-router-dom";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import OAuth from "../components/OAuth";
+// firebase
+import { db } from "../firebase";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 
 export default function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
+
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
   });
-
   const { name, email, password } = formData;
+  const formDataCopy = { ...formData };
+  delete formDataCopy.password;
+  formDataCopy.timestamp = serverTimestamp();
 
   function onChange(e) {
     setFormData((prevState) => ({
@@ -19,6 +33,28 @@ export default function SignUp() {
       [e.target.id]: e.target.value,
     }));
   }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const auth = getAuth();
+      const userCredentials = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredentials.user;
+      updateProfile(auth.currentUser, {
+        displayName: name,
+      });
+
+      await setDoc(doc(db, "users", user.uid), formDataCopy);
+      toast.success("Signup successfully");
+      navigate("/");
+    } catch (error) {
+      toast.error("An error has occured!");
+    }
+  };
 
   return (
     <section>
@@ -32,7 +68,7 @@ export default function SignUp() {
           />
         </div>
         <div className="mb-6 w-full md:w-[67%] lg:w-[40%] lg:ml-20">
-          <form>
+          <form onSubmit={handleSubmit}>
             <input
               className="mb-6 w-full px-4 py-2 text-xl text-gray-700 bg-white border-gray-300 rounded transition ease-in-out"
               type="text"
