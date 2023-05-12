@@ -79,6 +79,7 @@ export default function Profile() {
     }
     fetchUserListings();
   }, [auth.currentUser.uid]);
+
   async function onDelete(listingID) {
     if (window.confirm("Are you sure you want to delete?")) {
       await deleteDoc(doc(db, "listings", listingID));
@@ -89,6 +90,7 @@ export default function Profile() {
       toast.success("Successfully deleted the listing");
     }
   }
+
   function onEdit(listingID) {
     navigate(`/edit-listing/${listingID}`);
   }
