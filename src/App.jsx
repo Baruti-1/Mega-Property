@@ -10,6 +10,7 @@ import SignUp from "./pages/SignUp";
 import Header from "./components/Header";
 import PrivateRoute from "./components/PrivateRoute";
 import CreateListing from "./pages/CreateListing";
+import Listing from "./pages/Listing";
 import EditListing from "./pages/EditListing";
 
 function App() {
@@ -25,6 +26,10 @@ function App() {
           <Route path="/forgot-password" element={<ForgotPassword />} />,
           <Route path="/offers" element={<Offers />} />,
           <Route path="/profile" element={<Profile />} />,
+          <Route
+            path="/category/:categoryName/:listingId"
+            element={<Listing />}
+          />
           <Route path="/sign-in" element={<SignIn />} />,
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/create-listing" element={<PrivateRoute />}>
