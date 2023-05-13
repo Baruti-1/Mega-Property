@@ -29,7 +29,7 @@ export default function Header() {
     <div className="bg-white border-b shadow-sm sticky top-0 z-40">
       <header className="flex justify-between items-center px-3 max-w-6xl mx-auto">
         <div>
-          <h1 className="cursor-pointer" onClick={() => navigate("/")}>
+          <h1 className="cursor-pointer text-3xl" onClick={() => navigate("/")}>
             Mega Property
           </h1>
         </div>
@@ -41,13 +41,6 @@ export default function Header() {
               }`}
             >
               <NavLink to="/offers">Offers</NavLink>
-            </li>
-            <li
-              className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent${
-                pathMatchRoute("/sign-up") && "text-black border-b-red-500"
-              }`}
-            >
-              <NavLink to="/sign-up">Sign Up</NavLink>
             </li>
             <li
               className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent${

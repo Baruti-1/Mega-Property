@@ -1,9 +1,10 @@
+// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC2b9DfCwVmWYgC7zLjaHTt3Aj09t4WhNs",
+  apiKey: import.meta.env.VITE_API_KEY,
   authDomain: "mega-property-1d9f1.firebaseapp.com",
   projectId: "mega-property-1d9f1",
   storageBucket: "mega-property-1d9f1.appspot.com",
